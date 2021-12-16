@@ -22,21 +22,20 @@ $$("#tab2").on("tab:show", () => {
                     <div class="card-content card-content-padding">
                         <button type="button" id="bought" class="button">I bought this</button>
                     </div>
-                    <div class="card-content card-content-padding" id="delete" >
-                        <button type="button" class="button">I don't need this</button>
+                    <div class="card-content card-content-padding">
+                        <button type="button" id="delete-${n}" class="button">I don't need this</button>
                     </div>
                 </div>
             </div>
             `
             $$("#wishlist").append(sCard);
-            
-            $$("#delete").on("click", (e) => {
+
+            $$(`#delete-${n}`).on("click", (e) => {
                 //submitting a new note
                 e.preventDefault();
                 const sUser = firebase.auth().currentUser.uid;
                 const sId = new Date().toISOString().replace(".", "_");
-                console.log(e);
-                // firebase.database().ref("wishlist/" + sUser + "/" + sId).remove(oData);
+                firebase.database().ref("wishlist/" + sUser + "/" + aKeys[n] + "/item/" + oItems[aKeys[n]].item).remove();
             });
             
         }
