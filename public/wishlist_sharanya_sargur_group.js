@@ -64,7 +64,6 @@ const addItem = (e) => {
     e.preventDefault();
     const sUser = firebase.auth().currentUser.uid;
     const sId = e.target.attributes.getNamedItem("sId").value;
-    console.log("wishlist/" + sUser + "/" + sId)
     firebase.database().ref('wishlist/' + sUser + "/" + sId).update({
         datePurchased: new Date().toISOString().replace(".", "_")
     });
@@ -72,7 +71,6 @@ const addItem = (e) => {
 }
 
 const removeItem = (e) => {
-    console.log(e, 'sdsadsad')
     e.preventDefault();
     const sUser = firebase.auth().currentUser.uid;
     const sId = e.target.attributes.getNamedItem("sId").value;
@@ -86,7 +84,6 @@ $$(".my-sheet").on("submit", e => {
     //submitting a new note
     e.preventDefault();
     const oData = app.form.convertToData("#addItem");
-    console.log(oData);
     const sUser = firebase.auth().currentUser.uid;
     const sId = new Date().toISOString().replace(".", "_");
     firebase.database().ref("wishlist/" + sUser + "/" + sId).set(oData);

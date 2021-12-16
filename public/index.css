@@ -58,3 +58,8 @@
 .strike {
     text-decoration: line-through;
 }
+
+button:disabled {
+    cursor: not-allowed;
+    color: gray;
+}
