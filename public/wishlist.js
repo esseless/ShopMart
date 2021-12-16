@@ -11,33 +11,64 @@ $$("#tab2").on("tab:show", () => {
     const sUser = firebase.auth().currentUser.uid;
     firebase.database().ref("wishlist/" + sUser).on("value", (snapshot) => {
         const oItems = snapshot.val();
-        const aKeys = Object.keys(oItems);
-        $$("#wishlist").html("");
-        for (let n = 0; n < aKeys.length; n++) {
-            let sCard = `
-            <div class="card">
-                <div class="card-content card-content-padding">
-                    <div class="card-content card-content-padding">${oItems[aKeys[n]].item}</div>
-                    <div class="card-content card-content-padding">$ ${oItems[aKeys[n]].cost}</div>
+        if (oItems) {
+            const aKeys = Object.keys(oItems);
+            $$("#wishlist").html("");
+            for (let n = 0; n < aKeys.length; n++) {
+                let sCard;
+                if (!oItems[aKeys[n]].datePurchased) {
+                    sCard = `
+                            <div class="card">
+                                <div class="card-content card-content-padding">
+                                    <div class="card-content card-content-padding">${oItems[aKeys[n]].item}</div>
+                                    <div class="card-content card-content-padding">$ ${oItems[aKeys[n]].cost}</div>
+                                    <div class="card-content card-content-padding">
+                                        <button type="button" id="bought" class="button" sId=${aKeys[n]}>I bought this</button>
+                                    </div>
+                                    <div class="card-content card-content-padding">                    
+                                        <button type="button" id="delete-${n}" class="button" sId=${aKeys[n]}>I don't need this</button>
+                                    </div>
+                                </div>
+                            </div>
+                            `
+                } else{
+                    sCard =  `<div class="card">
                     <div class="card-content card-content-padding">
-                        <button type="button" id="bought" class="button">I bought this</button>
-                    </div>
-                    <div class="card-content card-content-padding">
-                        <button type="button" id="delete-${n}" class="button">I don't need this</button>
+                        <div class="card-content card-content-padding strike">${oItems[aKeys[n]].item}</div>
+                        <div class="card-content card-content-padding strike">$ ${oItems[aKeys[n]].cost}</div>
+                        <div class="card-content card-content-padding">
+                            <button type="button" id="bought-${n}" class="button" sId=${aKeys[n]} disabled>I bought this</button>
+                        </div>
+                        <div class="card-content card-content-padding">                    
+                            <button type="button" id="delete-${n}" class="button" sId=${aKeys[n]} disabled>I don't need this</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            `
-            $$("#wishlist").append(sCard);
+                `
+                }
+                $$("#wishlist").append(sCard);
 
-            $$(`#delete-${n}`).on("click", (e) => {
-                //submitting a new note
-                e.preventDefault();
-                const sUser = firebase.auth().currentUser.uid;
-                const sId = new Date().toISOString().replace(".", "_");
-                firebase.database().ref("wishlist/" + sUser + "/" + aKeys[n] + "/item/" + oItems[aKeys[n]].item).remove();
-            });
-            
+                $$(`#delete-${n}`).on("click", (e) => {
+                    e.preventDefault();
+                    const sUser = firebase.auth().currentUser.uid;
+                    const sId = e.target.attributes.getNamedItem("sId").value;
+                    console.log("wishlist/" + sUser + "/" + sId)
+                    firebase.database().ref("wishlist/" + sUser + "/" + sId).remove().then(res => {
+                        console.log('res ', res)
+                    });
+                });
+
+                $$(`#bought-${n}`).on("click", (e) => {
+                    e.preventDefault();
+                    const sUser = firebase.auth().currentUser.uid;
+                    const sId = e.target.attributes.getNamedItem("sId").value;
+                    console.log("wishlist/" + sUser + "/" + sId)
+                    firebase.database().ref('wishlist/' + sUser + "/" + sId).update({
+                        datePurchased: Date.now()
+                    });
+                });
+
+            }
         }
     });
 });
@@ -51,6 +82,3 @@ $$(".my-sheet").on("submit", e => {
     firebase.database().ref("wishlist/" + sUser + "/" + sId).set(oData);
     app.sheet.close(".my-sheet", true);
 });
-
-
-
