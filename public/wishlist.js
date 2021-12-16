@@ -20,6 +20,9 @@ $$("#tab2").on("tab:show", () => {
                     sCard = `
                             <div class="card">
                                 <div class="card-content card-content-padding">
+                                    <div class="card-content card-content-padding">
+                                        <img src=${oItems[aKeys[n]].image} style="height:120px"/>
+                                    </div>
                                     <div class="card-content card-content-padding">${oItems[aKeys[n]].item}</div>
                                     <div class="card-content card-content-padding">$ ${oItems[aKeys[n]].cost}</div>
                                     <div class="card-content card-content-padding">
@@ -34,6 +37,9 @@ $$("#tab2").on("tab:show", () => {
                 } else{
                     sCard =  `<div class="card">
                     <div class="card-content card-content-padding">
+                        <div class="card-content card-content-padding">
+                            <img src=${oItems[aKeys[n]].imageURL} style="height:120px"/>
+                        </div>
                         <div class="card-content card-content-padding strike">${oItems[aKeys[n]].item}</div>
                         <div class="card-content card-content-padding strike">$ ${oItems[aKeys[n]].cost}</div>
                         <div class="card-content card-content-padding">
@@ -64,7 +70,7 @@ $$("#tab2").on("tab:show", () => {
                     const sId = e.target.attributes.getNamedItem("sId").value;
                     console.log("wishlist/" + sUser + "/" + sId)
                     firebase.database().ref('wishlist/' + sUser + "/" + sId).update({
-                        datePurchased: Date.now()
+                        datePurchased: new Date().toISOString().replace(".", "_")
                     });
                 });
 
@@ -77,6 +83,7 @@ $$(".my-sheet").on("submit", e => {
     //submitting a new note
     e.preventDefault();
     const oData = app.form.convertToData("#addItem");
+    console.log(oData);
     const sUser = firebase.auth().currentUser.uid;
     const sId = new Date().toISOString().replace(".", "_");
     firebase.database().ref("wishlist/" + sUser + "/" + sId).set(oData);
