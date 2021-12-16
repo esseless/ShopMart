@@ -23,7 +23,7 @@ $$("#tab2").on("tab:show", () => {
                                     <div class="card-content card-content-padding">${oItems[aKeys[n]].item}</div>
                                     <div class="card-content card-content-padding">$ ${oItems[aKeys[n]].cost}</div>
                                     <div class="card-content card-content-padding">
-                                        <button type="button" id="bought" class="button" sId=${aKeys[n]}>I bought this</button>
+                                        <button type="button" id="bought-${n}" class="button" sId=${aKeys[n]}>I bought this</button>
                                     </div>
                                     <div class="card-content card-content-padding">                    
                                         <button type="button" id="delete-${n}" class="button" sId=${aKeys[n]}>I don't need this</button>
