@@ -4,7 +4,7 @@ import "https://cdnjs.cloudflare.com/ajax/libs/firebase/7.16.0/firebase-database
 import "https://cdnjs.cloudflare.com/ajax/libs/firebase/7.16.1/firebase-auth.min.js";
 import config from "./firebase.js";
 import app from "./F7App.js";
-import "./wishlist.js";
+import "./wishlist_sharanya_sargur_group.js";
 
 firebase.initializeApp(config);
 const $$ = Dom7;
@@ -66,7 +66,6 @@ $$("#signInButtonGoogle").on("click", (evt) => {
 $$("#signUpForm").on("submit", (evt) => {
     evt.preventDefault();
     var formData = app.form.convertToData('#signUpForm');
-    alert("clicked Sign Up: " + JSON.stringify(formData));
     firebase.auth().createUserWithEmailAndPassword(formData.username, formData.password).then(
             () => {
                 // could save extra info in a profile here I think.

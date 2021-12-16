@@ -87,5 +87,8 @@ $$(".my-sheet").on("submit", e => {
     const sUser = firebase.auth().currentUser.uid;
     const sId = new Date().toISOString().replace(".", "_");
     firebase.database().ref("wishlist/" + sUser + "/" + sId).set(oData);
+    $$("#image").val("")
+    $$("#item").val("")
+    $$("#cost").val("")
     app.sheet.close(".my-sheet", true);
 });

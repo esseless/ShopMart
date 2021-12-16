@@ -1,8 +1,19 @@
-# [loginDemo](https://github.com/rhildred/loginDemo)
+# [wishlist](https://github.com/esseless/Wishlist)
 
-## firebase framework7 v4 login demo for a CAPSTONE team.
+## firebase framework7 v4.
 
-This is a demo of a Framework7 login using Firebase to login and create a profile. To run in your local environment.
+
+Team members are listed below.
+
+---
+
+Sharanya Sargur Lakshminarasimhan
+Rahul Pugazhendi
+Uday Saini
+
+---
+
+To run in your local environment.
 
 ```
 
