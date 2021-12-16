@@ -2,7 +2,7 @@
   "rules": {
     ".read": false,
     ".write": false,
-    "groceries": {
+    "wishlist": {
       "$uid": {
         ".read": "auth != null && auth.uid == $uid",
         ".write": "auth != null && auth.uid == $uid"

@@ -42,6 +42,15 @@
     justify-content: space-around;
 }
 
+.card-content {
+    display: flex;
+    justify-content: space-between;
+}
+
 .list-item button {
     width: 14em;
+}
+
+.fab {
+    text-align: center;
 }

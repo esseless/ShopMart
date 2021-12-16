@@ -20,7 +20,7 @@
 	<meta name="theme-color" content="#2196f3">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="msapplication-tap-highlight" content="no">
-	<title>Shop Mart</title>
+	<title>Wishlist Tracker</title>
 	<link rel="apple-touch-icon" href="img/f7-icon-square.png">
 	<link rel="icon" href="img/f7-icon.png">
 	<link rel="stylesheet" href="./index.css">
@@ -35,7 +35,7 @@
 			<div class="page">
 				<nav class="navbar">
 					<div class="navbar-inner">
-						<h1 class="title sliding">Shop Mart</h1>
+						<h1 class="title sliding">Wishlist Tracker</h1>
 					</div>
 				</nav>
 				<main class="page-content">
@@ -50,18 +50,18 @@
 										data-login-screen=".loginYes">Sign In</a>
 								</p>
 							</div>
-							<p>Welcome to Shop Mart - your one place shop stop for all the last minute buys!</p>
+							<p>Manage your wishlist...</p>
 						</div>
 						<div id="tab2" class="block tab">
 							<div class="row">&nbsp;<button id="logout" class="button button-raised">Logout</button>
 							</div>
-							<!-- Green FAB -->
+
 							<div class="fab fab-right-bottom color-green">
 								<a href="#" data-sheet=".my-sheet" class="sheet-open">
-									<i class="icon f7-icons">add</i>
+									<i class="icon f7-icons">Add</i>
 								</a>
 							</div>
-							<div id="groceryList">This is for the display of the grocery list</div>
+							<div id="wishlist">You don't seem to have anything in your wishlist yet...</div>
 						</div>
 					</div>
 				</main>
@@ -69,7 +69,7 @@
 					<div class="view">
 						<div class="page">
 							<div class="page-content login-screen-content">
-								<div class="login-screen-title">Shop Mart Login</div>
+								<div class="login-screen-title">Login</div>
 								<form id="loginForm">
 									<div class="list">
 										<ul>
@@ -94,10 +94,12 @@
 									</div>
 									<div class="list">
 										<ul class="sign-in-options">
-											<li class="list-item"><button type="submit" id="signInButton"
-													class="button button-active">Sign In</a>
+											<li class="list-item">
+												<button type="submit" id="signInButton"
+													class="button button-active">Sign In</button>
 											</li>
-											<li class="list-item"><button id="signInButtonGoogle" type="button"
+											<li class="list-item">
+												<button id="signInButtonGoogle" type="button"
 													class="button button-active">Sign In With Google</button>
 											</li>
 										</ul>
@@ -157,11 +159,11 @@
 						</div>
 					</div>
 				</div>
-				<!-- Grocery drawer -->
+				<!-- Wishlist drawer -->
 				<form id="addItem" class="sheet-modal my-sheet list">
 					<div class="toolbar">
 						<div class="toolbar-inner block">
-							<div class="left">Add a Grocery Item</div>
+							<div class="left">Add an item to wishlist</div>
 							<p id="closeSave" class="segmented segmented-raised">
 								<a href="#" class="button sheet-close">Close
 								</a>
@@ -174,10 +176,10 @@
 							<li>
 								<div class="item-content item-input">
 									<div class="item-inner">
-										<label for="item" class="item-title item-label">Item:</label>
+										<label for="item" class="item-title item-label">Product</label>
 										<div class="item-input-wrap">
-											<input id="item" type="text" name="item" placeholder="Item required"
-												class="">
+											<input id="item" type="text" name="item"
+												placeholder="What do you wish to buy?" class="">
 										</div>
 									</div>
 								</div>
@@ -185,10 +187,10 @@
 							<li>
 								<div class="item-content item-input">
 									<div class="item-inner">
-										<label for="store" class="item-title item-label">Store:</label>
+										<label for="cost" class="item-title item-label">Cost</label>
 										<div class="item-input-wrap">
-											<input id="store" type="text" name="store" placeholder="Available at"
-												class="">
+											<input id="cost" type="number" name="cost"
+												placeholder="How much does it cost?" class="">
 										</div>
 									</div>
 								</div>
